@@ -69,9 +69,8 @@ xmls=[etree.fromstring(xmlfile) for xmlfile in xmls] #parse files
 output=[]
 for xml in xmls: 
  	for xpath in xpaths: 
-		output+=xml.xpath(xpath + '/text()')
+		output+=[xml.xpath(xpath + '/text()')] 
 
-clean=""
-clean = '\t'.join(line.strip() for line in output)
+clean = '\t'.join(['\n'.join(item) if isinstance(item, list) else item for item in output]) 
 
 encoded=sys.stdout.write(clean.encode('utf-8'))
