@@ -47,11 +47,17 @@ if options.verbose:
 #parse files 
 xmls=[etree.fromstring(xmlfile) for xmlfile in xmls] 
 
+epigraphs = [] 
+index = 0 
 for xml in xmls: 
-    title = xml.xpath(config.titleXPATH + '/text()')[0]  
-    author = xml.xpath(config.authorXPATH + '/text()')[0]  
+    title = xml.xpath(config.titleXPATH + '/text()')[0]
+    author = xml.xpath(config.authorXPATH + '/text()')[0]
     epigraph = xml.xpath(config.epigraphXPATH + '/text()')  
-    attribution = xml.xpath(config.attributionXPATH + '/text()')[0]  
+    attribution = xml.xpath(config.attributionXPATH + '/text()')
+    for epi_instance in epigraph: 
+        epigraphs.append(title, author, epigraph[index], attribution[index]) 
+        index++  
+
 
     output = "---------------\n" 
     output+= "Title: %s \nAuthor: %s \nEpigraph: %s \nAttribution: %s" % (title, author, epigraph, attribution)
