@@ -53,17 +53,17 @@ for xml in xmls:
     title = xml.xpath(config.titleXPATH + '/text()')[0]
     author = xml.xpath(config.authorXPATH + '/text()')[0]
     epigraph = xml.xpath(config.epigraphXPATH + '/text()')  
-    attribution = xml.xpath(config.attributionXPATH + '/text()')
+    #attribution = xml.xpath(config.attributionXPATH + '/text()')
     for epi_instance in epigraph: 
-        epigraphs.append(title, author, epigraph[index], attribution[index]) 
-        index++  
+        epigraphs.append([title, author, epi_instance])  
+        index+=1
 
     output = "---------------\n" 
     for epi_instance in epigraphs: 
-        output+= "Title: %s \nAuthor: %s \nEpigraph: %s \nAttribution: %s" % (epigraphs[0], epigraphs[1], epigraphs[2], epigraphs[3])
+        output+= "Title: %s \nAuthor: %s \nEpigraph: %s \n\n" % (epi_instance[0], epi_instance[1], epi_instance[2]) 
     output+= "---------------" 
 
-print "Type, Epigraph Taken From, Epigraph Written By, Publication Date of Epigraph, Epigraph Used By, Genre of Containing Text, Date Setting of Containing Text, Publication Date of Containing Text, Epigraph Appears In, Epigraph Attributed to Person, Epigraph Attributed to Text, Location of Epigraph in Original Text, Location of Epigraph in New Text, Epigraph, Purpose, Genre of Epigraph, Filename"  
+#print "Type, Epigraph Taken From, Epigraph Written By, Publication Date of Epigraph, Epigraph Used By, Genre of Containing Text, Date Setting of Containing Text, Publication Date of Containing Text, Epigraph Appears In, Epigraph Attributed to Person, Epigraph Attributed to Text, Location of Epigraph in Original Text, Location of Epigraph in New Text, Epigraph, Purpose, Genre of Epigraph, Filename"  
 
 #separate xpath items with tabs, separate multi-line items with newlines
 #clean = '\t'.join(['\n'.join(item) if isinstance(item, list) else item for item in output]) 
