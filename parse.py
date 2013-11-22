@@ -48,15 +48,14 @@ if options.verbose:
 xmls=[etree.fromstring(xmlfile) for xmlfile in xmls] 
 
 epigraphs = [] 
-index = 0 
 for xml in xmls: 
     title = xml.xpath(config.titleXPATH + '/text()')[0]
     author = xml.xpath(config.authorXPATH + '/text()')[0]
     epigraph = xml.xpath(config.epigraphXPATH + '/text()')  
     #attribution = xml.xpath(config.attributionXPATH + '/text()')
     for epi_instance in epigraph: 
-        epigraphs.append([title, author, epi_instance])  
-        index+=1
+        if len(epi_instance.strip()) < 1:  
+            epigraphs.append([title, author, epi_instance])  
 
     output = "---------------\n" 
     for epi_instance in epigraphs: 
