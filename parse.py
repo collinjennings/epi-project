@@ -58,9 +58,9 @@ for xml in xmls:
         epigraphs.append(title, author, epigraph[index], attribution[index]) 
         index++  
 
-
     output = "---------------\n" 
-    output+= "Title: %s \nAuthor: %s \nEpigraph: %s \nAttribution: %s" % (title, author, epigraph, attribution)
+    for epi_instance in epigraphs: 
+        output+= "Title: %s \nAuthor: %s \nEpigraph: %s \nAttribution: %s" % (epigraphs[0], epigraphs[1], epigraphs[2], epigraphs[3])
     output+= "---------------" 
 
 print "Type, Epigraph Taken From, Epigraph Written By, Publication Date of Epigraph, Epigraph Used By, Genre of Containing Text, Date Setting of Containing Text, Publication Date of Containing Text, Epigraph Appears In, Epigraph Attributed to Person, Epigraph Attributed to Text, Location of Epigraph in Original Text, Location of Epigraph in New Text, Epigraph, Purpose, Genre of Epigraph, Filename"  
